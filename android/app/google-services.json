@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "852657689689",
+    "firebase_url": "https://flutter-tictactoe.firebaseio.com",
+    "project_id": "flutter-tictactoe",
+    "storage_bucket": "flutter-tictactoe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852657689689:android:132eeea3babd74ead4cd48",
+        "android_client_info": {
+          "package_name": "com.example.multiplayertictactoeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852657689689-vni971eu4u5kkikukjoa311lpk19kbfv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhfNAg-Rz_xdyIxkg56Wt0QPjmb73JdzY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "852657689689-vni971eu4u5kkikukjoa311lpk19kbfv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
