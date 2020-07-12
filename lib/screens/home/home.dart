@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../services/auth.dart';
+import './users_list.dart';
 
 class Home extends StatelessWidget {
   final AuthService _auth = AuthService();
@@ -21,6 +22,7 @@ class Home extends StatelessWidget {
           )
         ],
       ),
+      body: UsersList(),
     );
   }
 }

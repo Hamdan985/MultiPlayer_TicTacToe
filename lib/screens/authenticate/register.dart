@@ -13,6 +13,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
 
+  String username = '';
   String email = '';
   String password = '';
   String errorMessage = '';
@@ -40,65 +41,81 @@ class _RegisterState extends State<Register> {
                 ),
               ],
             ),
-            body: Container(
-              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(height: 20.0),
-                    TextFormField(
-                      validator: (val) => val.isEmpty ? 'Enter an email' : null,
-                      onChanged: (value) {
-                        setState(() => email = value);
-                      },
-                    ),
-                    SizedBox(height: 20.0),
-                    TextFormField(
-                      validator: (val) => val.length < 6
-                          ? 'Length of Password should be > 6 chars'
-                          : null,
-                      obscureText: true,
-                      onChanged: (value) {
-                        setState(() => password = value);
-                      },
-                    ),
-                    SizedBox(height: 20.0),
-                    RaisedButton(
-                      child: Text(
-                        'Register',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
+            body: SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(height: 20.0),
+                      TextFormField(
+                        decoration: InputDecoration(hintText: "Username"),
+                        validator: (val) =>
+                            val.isEmpty ? 'Enter a username' : null,
+                        onChanged: (value) {
+                          setState(() => username = value);
+                        },
                       ),
-                      color: Colors.pink[300],
-                      onPressed: () async {
-                        if (_formKey.currentState.validate()) {
-                          setState(() {
-                            loading = true;
-                          });
-                          dynamic result = await _auth
-                              .registerWithUserAndPassword(email, password);
-                          if (result == null) {
+                      SizedBox(height: 20.0),
+                      TextFormField(
+                        decoration: InputDecoration(hintText: "Email"),
+                        validator: (val) =>
+                            val.isEmpty ? 'Enter an email' : null,
+                        onChanged: (value) {
+                          setState(() => email = value);
+                        },
+                      ),
+                      SizedBox(height: 20.0),
+                      TextFormField(
+                        decoration: InputDecoration(hintText: "Password"),
+                        validator: (val) => val.length < 6
+                            ? 'Length of Password should be > 6 chars'
+                            : null,
+                        obscureText: true,
+                        onChanged: (value) {
+                          setState(() => password = value);
+                        },
+                      ),
+                      SizedBox(height: 20.0),
+                      RaisedButton(
+                        child: Text(
+                          'Register',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        color: Colors.pink[300],
+                        onPressed: () async {
+                          if (_formKey.currentState.validate()) {
                             setState(() {
-                              errorMessage = 'Server Error, Try again lul uwu';
                               loading = true;
                             });
+                            dynamic result =
+                                await _auth.registerWithUserAndPassword(
+                                    email, password, username);
+                            if (result == null) {
+                              setState(() {
+                                errorMessage =
+                                    'Server Error, Try again lul uwu';
+                                loading = true;
+                              });
+                            }
                           }
-                        }
-                      },
-                    ),
-                    SizedBox(
-                      height: 50.0,
-                      child: Text(
-                        errorMessage,
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontSize: 16,
-                        ),
+                        },
                       ),
-                    )
-                  ],
+                      SizedBox(
+                        height: 50.0,
+                        child: Text(
+                          errorMessage,
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 16,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -50,6 +50,7 @@ class _SignInState extends State<SignIn> {
                   children: <Widget>[
                     SizedBox(height: 20.0),
                     TextFormField(
+                      decoration: InputDecoration(hintText: "Email"),
                       validator: (val) => val.isEmpty ? 'Enter an email' : null,
                       onChanged: (value) {
                         setState(() => email = value);
@@ -57,6 +58,7 @@ class _SignInState extends State<SignIn> {
                     ),
                     SizedBox(height: 20.0),
                     TextFormField(
+                      decoration: InputDecoration(hintText: "Password"),
                       validator: (val) => val.length < 6
                           ? 'Length of Password should be > 6 chars'
                           : null,
