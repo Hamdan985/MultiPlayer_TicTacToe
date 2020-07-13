@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../models/user.dart';
+import '../game/game_screen.dart';
 
 class UserTile extends StatelessWidget {
   final User user;
@@ -8,7 +9,6 @@ class UserTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // print("$uid -- $username");
     return Padding(
       padding: EdgeInsets.only(top: 8.0),
       child: Card(
@@ -19,6 +19,9 @@ class UserTile extends StatelessWidget {
             backgroundColor: Colors.purple[400],
           ),
           title: Text(user.username),
+          onTap: () {
+            //TODO : push to game screen followed by init state to create a board between these two users
+          },
           subtitle: Text(user.uid),
         ),
       ),
