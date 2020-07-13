@@ -18,10 +18,17 @@ class DatabaseService {
   }
 
   // gets us the stream of users in our rootCollection
-  Stream<QuerySnapshot> get users {
-    return rootCollection.snapshots();
+  Stream<List<User>> get users {
+    return rootCollection.snapshots().map(_usersFromSnapshot);
   }
 
   // gets us a list of users form the stream of snapshot
-  List<User> _usersFromSnapshot() {}
+  List<User> _usersFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((document) {
+      return User(
+        uid: document.data["id"] ?? 'ID not found',
+        username: document.data["username"] ?? 'Username not found',
+      );
+    }).toList();
+  }
 }
